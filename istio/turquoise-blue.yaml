@@ -1,0 +1,53 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: turquoise
+  labels:
+    app: turquoise
+spec:
+  selector:
+    app: turquoise
+  type: NodePort
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: turquoise-blue
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: turquoise
+        version: blue
+    spec:
+      containers:
+        - name: turquoise
+          image: docker.io/joatmon08/turquoise:blue
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: TURQUOISE_APP_PORT
+              value: "80"
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gateway
+  annotations:
+    kubernetes.io/ingress.class: "istio"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /turquoise.*
+        backend:
+          serviceName: turquoise
+          servicePort: 80
+---
