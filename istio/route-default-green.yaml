@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     name: turquoise
-  precedence: 1
+  precedence: 4
   route:
   - labels:
       version: green
