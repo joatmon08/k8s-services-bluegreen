@@ -10,7 +10,7 @@ spec:
   route:
   - labels:
       version: blue
-    weight: 90
+    weight: 50
   - labels:
       version: green
-    weight: 10
+    weight: 50
