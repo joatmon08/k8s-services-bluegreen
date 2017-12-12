@@ -1,0 +1,3 @@
+/srv    => /#/io.l5d.k8s/default/http ;
+/host   => /srv/turquoise-blue ;
+/svc/*  => /host ;
