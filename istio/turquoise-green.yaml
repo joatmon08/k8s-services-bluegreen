@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: turquoise
-          image: docker.io/joatmon08/turquoise:green
+          image: joatmon08/turquoise:green
           imagePullPolicy: Always
           ports:
             - containerPort: 80
